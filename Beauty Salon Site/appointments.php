@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Salon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Beauty Salon</h1>
+        <button class="menu-btn">&#9776;</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+        <script src="script.js"></script>
+    </header>
+
+    <div class="aboutus"><h1>Appointments</h1></div>
+
+    <div class="appointment">
+        <video width="640" height="360" controls autoplay loop muted>
+            <source src="images/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="text-container">
+            <h2>Experience Luxurious Treatments Tailored Just for You</h2>
+            <p>Discover a world of rejuvenating and luxurious treatments designed to enhance your natural beauty. From soothing facials and flawless manicures to transformative lash and brow services, our skilled team offers personalized care and exceptional quality. Watch the video below to explore the variety of treatments available. When you're ready to indulge, book your appointment using the form below!</p>
+        </div>
+    </div> 
+
+    <hr>
+
+    <form id="forumForm" action="#" method="POST">
+        <label for="treatment">Select Treatment:</label>
+        <select id="treatment" name="treatment">
+            <option value="Manicure">Manicure</option>
+            <option value="Pedicure">Pedicure</option>
+            <option value="Waxing">Waxing</option>
+            <option value="Facials">Facials</option>
+            <option value="Eyebrows">Eyebrows</option>
+            <option value="Eyelashes">Eyelashes</option>
+        </select>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+        <label for="additionalInfo">Additional Information:</label>
+        <textarea id="additionalInfo" name="additionalInfo" placeholder="Enter any additional information" rows="4"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+
+    <h2>Update or Cancel Your Booking</h2>
+
+    <form action="#" method="POST">
+        <label for="emailUpdate">Enter Your Email:</label>
+        <input type="email" id="emailUpdate" name="email" required>
+
+        <label for="treatmentUpdate">Select New Treatment:</label>
+        <select id="treatmentUpdate" name="treatment">
+            <option value="Manicure">Manicure</option>
+            <option value="Pedicure">Pedicure</option>
+            <option value="Waxing">Waxing</option>
+            <option value="Facials">Facials</option>
+            <option value="Eyebrows">Eyebrows</option>
+            <option value="Eyelashes">Eyelashes</option>
+        </select>
+
+        <label for="phoneUpdate">New Phone Number:</label>
+        <input type="tel" id="phoneUpdate" name="phone">
+
+        <label for="additionalInfoUpdate">Additional Information:</label>
+        <textarea id="additionalInfoUpdate" name="additionalInfo" rows="4"></textarea>
+
+        <!-- This booking ID is just a placeholder in the static version -->
+        <input type="hidden" name="booking_id" value="12345">
+
+        <button type="submit" name="update">Update Booking</button>
+        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your booking?');">Delete Booking</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function getCookie(name) {
+                let cookies = document.cookie.split("; ");
+                for (let cookie of cookies) {
+                    let [key, value] = cookie.split("=");
+                    if (key === name) return decodeURIComponent(value);
+                }
+                return "";
+            }
+
+            document.getElementById("email").value = getCookie("email") || document.getElementById("email").value;
+            document.getElementById("phone").value = getCookie("phone") || document.getElementById("phone").value;
+
+            document.getElementById("forumForm").addEventListener("submit", function () {
+                let email = document.getElementById("email").value;
+                let phone = document.getElementById("phone").value;
+
+                document.cookie = `email=${encodeURIComponent(email)}; path=/; max-age=2592000`;
+                document.cookie = `phone=${encodeURIComponent(phone)}; path=/; max-age=2592000`;
+            });
+        });
+    </script>
+
+</body>
+</html>
